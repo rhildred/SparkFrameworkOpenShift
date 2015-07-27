@@ -1,0 +1,1 @@
+<?php return $attributes->get("message"); ?>
