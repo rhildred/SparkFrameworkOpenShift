@@ -1,0 +1,26 @@
+
+oStmt = connection.createStatement();
+String sSQL = "SELECT * FROM PERSON WHERE id = " + 3;
+ResultSet oRs = oStmt.executeQuery(sSQL);
+
+Connection connection = null;
+PreparedStatement oStmt = null;
+try{
+	connection = OpenShiftDerbySource.getConnection();
+	connection.setAutoCommit(false);
+	
+	// now we insert into DispClass getting the insert id into nID 
+	oStmt = connection.prepareStatement("INSERT INTO DispClass(name) VALUES(?)", Statement.RETURN_GENERATED_KEYS);
+	oStmt.setString(1, sName);
+    int affectedRows = oStmt.executeUpdate();
+    if (affectedRows == 0) {
+        throw new SQLException("Creating DispClass failed, no rows affected.");
+    }
+}catch(Exception e){
+	e.printStackTrace();
+}finally{
+	//free up non gc'd external resources
+    if (oStmt != null) try { oStmt.close(); } catch (SQLException logOrIgnore) {}			
+    if (connection != null) try { connection.close(); } catch (SQLException logOrIgnore) {}			
+
+}
