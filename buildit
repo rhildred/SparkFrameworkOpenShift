@@ -1,0 +1,1 @@
+mvn install:install-file -Dfile=lib/quercus.jar -DgroupId=com.caucho -DartifactId=quercus -Dversion=4.0.39 -Dpackaging=jar
