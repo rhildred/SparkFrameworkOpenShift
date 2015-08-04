@@ -26,4 +26,4 @@ export PATH=$JAVA_HOME/bin:$M2:$PATH
 
 cd $OPENSHIFT_REPO_DIR
 java -version
-mvn -s $OPENSHIFT_REPO_DIR/.openshift/settings.xml -q clean compile
+mvn -s $OPENSHIFT_REPO_DIR/.openshift/settings.xml compile
