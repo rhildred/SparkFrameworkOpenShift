@@ -2,6 +2,8 @@ package com.ticketing;
 
 import java.io.*;
 import com.caucho.quercus.QuercusEngine;
+import java.sql.*;
+import ca.on.conestogac.*;
 
 import static spark.Spark.*;
 
@@ -16,12 +18,33 @@ public class App
     public static void main(String[] args) {
         setIpAddress(IP_ADDRESS);
         setPort(PORT);
+        externalStaticFileLocation(System.getProperty("user.dir") + "/public/");
         PHPRenderer php = new PHPRenderer();
-        get("/", (request, response) -> {
-            return php.render("views/test.php", "test");
-        });
-        get("/info", (request, response) -> {
-            return php.render("views/info.php", "info");
-        });
+        php.setViewDir("views/");
+        final Connection connection = OpenShiftDataSource.getConnection("jdbc:mysql://localhost:3306/kanbanpomodoro?user=root");
+        try{
+            get("/", (request, response) -> {
+                return php.render("test.php", "test");
+            });
+            get("/info", (request, response) -> {
+                return php.render("info.php", "info");
+            });
+            get("/tests", (request, response) -> {
+                //make a stmt from my SQL
+                String rc = "";
+                try{
+                    Statement oStmt = connection.createStatement();
+                    String sSQL = "SELECT * FROM tests";
+                    ResultSet oRs = oStmt.executeQuery(sSQL);
+                    rc = ResultSetValue.toJsonString(oRs);
+                    oRs.close();
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+                return rc;
+            });
+        }catch(Exception e){
+        	e.printStackTrace();
+        }
     }
 }

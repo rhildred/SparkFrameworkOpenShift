@@ -25,15 +25,20 @@ public class OpenShiftDataSource {
 		}
 		return sURL;
 	}
-	public static Connection getConnection(String sUrl) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException
+	public static Connection getConnection(String sUrl)
 	{
 		String sURL = getConnectionString(sUrl);
 
 		Connection connection = null;
 
-		Class.forName("com.mysql.jdbc.Driver").newInstance();
+        try{
 
-		connection = DriverManager.getConnection(sURL);
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+            connection = DriverManager.getConnection(sURL);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
 		return connection;
 	}

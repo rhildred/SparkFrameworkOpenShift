@@ -1,5 +1,5 @@
 <?php
 
-layout("views/layout.php");
+layout("layout.php");
 
 echo "Rich Rocks!"; ?>

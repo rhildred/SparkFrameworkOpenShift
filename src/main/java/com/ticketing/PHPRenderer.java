@@ -25,9 +25,13 @@ import com.caucho.vfs.WriteStream;
 
 public class PHPRenderer{
     protected QuercusContext _quercus;
+    protected String sViewDir = "";
     public PHPRenderer(){
         _quercus = new QuercusContext();
         _quercus.init();
+    }
+    public void setViewDir(String sViewDir){
+        this.sViewDir = sViewDir;
     }
     public String render(String sFile, String sPage){
         return this.render(sFile, sPage, null);
@@ -59,7 +63,7 @@ public class PHPRenderer{
             }
             env.setGlobalValue("filename", new ConstStringValue(sFile));
             env.setGlobalValue("sPage", new ConstStringValue(sPage));
-            env.setGlobalValue("basedir", new ConstStringValue(_quercus.getPwd() + "/"));
+            env.setGlobalValue("basedir", new ConstStringValue(_quercus.getPwd() + "/" + this.sViewDir));
 
 			Value value = NullValue.NULL;
 			try{
