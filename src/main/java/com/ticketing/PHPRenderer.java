@@ -29,6 +29,7 @@ public class PHPRenderer{
     public PHPRenderer(){
         _quercus = new QuercusContext();
         _quercus.init();
+        _quercus.start();
     }
     public void setViewDir(String sViewDir){
         this.sViewDir = sViewDir;
@@ -67,6 +68,7 @@ public class PHPRenderer{
 
 			Value value = NullValue.NULL;
 			try{
+	            env.start();
 				value = program.execute(env);
 
 			}catch(Exception e){

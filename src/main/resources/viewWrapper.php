@@ -5,6 +5,7 @@ $bInLayout = false;
 function layout($sIn){
     global $bInLayout;
     global $basedir;
+    global $model;
     if(!$bInLayout){
         $bInLayout = true;
         $sFile = $basedir . $sIn;
@@ -18,6 +19,7 @@ function layout($sIn){
 function renderBody(){
     global $basedir;
     global $filename;
+    global $model;
     $sFile = $basedir . $filename;
     //echo "render" . $sFile;
     include $sFile;
