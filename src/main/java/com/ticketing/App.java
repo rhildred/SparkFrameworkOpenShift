@@ -26,6 +26,10 @@ public class App
             get("/", (request, response) -> {
                 return php.render("test.php", "test");
             });
+            get("/app", (request, response) -> {
+                return php.render("test.php", "test");
+            });
+
             get("/info", (request, response) -> {
                 return php.render("info.php", "info");
             });
