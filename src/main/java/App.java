@@ -22,10 +22,13 @@ public class App
         final Connection connection = OpenShiftDataSource.getConnection("jdbc:mysql://localhost:3306/kanbanpomodoro?user=root");
         try{
             get("/", (request, response) -> {
-                return php.render("test.php", "test");
+                return php.render("test.php");
             });
             get("/info", (request, response) -> {
-                return php.render("info.php", "info");
+                return php.render("info.php");
+            });
+            get("/rocks/:name", (request, response) -> {
+                return php.render("rocks.php", "{\"name\":\"" + request.params(":name") + "\"}");
             });
             get("/tests", (request, response) -> {
                 //make a stmt from my SQL
