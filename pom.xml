@@ -70,47 +70,15 @@
 			<artifactId>junit</artifactId>
 			<version>4.10</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.salesucation</groupId>
+			<artifactId>sparkphp</artifactId>
+			<version>1.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<directory>diy</directory>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>2.3</version>
-				<configuration>
-					<createDependencyReducedPom>true</createDependencyReducedPom>
-					<filters>
-						<filter>
-							<artifact>*:*</artifact>
-							<excludes>
-								<exclude>META-INF/*.SF</exclude>
-								<exclude>META-INF/*.DSA</exclude>
-								<exclude>META-INF/*.RSA</exclude>
-							</excludes>
-						</filter>
-					</filters>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-						<configuration>
-							<transformers>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>com.todoapp.Bootstrap</mainClass>
-								</transformer>
-							</transformers>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
 	</build>
 
 

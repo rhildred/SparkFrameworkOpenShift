@@ -1,10 +1,8 @@
-package com.ticketing;
-
-import java.io.*;
-import com.caucho.quercus.QuercusEngine;
 import java.sql.*;
-import ca.on.conestogac.*;
 
+import com.salesucation.sparkphp.PHPRenderer;
+
+import ca.on.conestogac.*;
 import static spark.Spark.*;
 
 /**
@@ -26,10 +24,6 @@ public class App
             get("/", (request, response) -> {
                 return php.render("test.php", "test");
             });
-            get("/app", (request, response) -> {
-                return php.render("test.php", "test");
-            });
-
             get("/info", (request, response) -> {
                 return php.render("info.php", "info");
             });
