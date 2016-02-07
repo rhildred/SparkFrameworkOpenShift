@@ -19,13 +19,13 @@ public class App
         php.setViewDir("views/");
         try{
             get("/", (request, response) -> {
-                return php.render("test.php");
+                return php.render("test.phtml");
             });
             get("/info", (request, response) -> {
-                return php.render("info.php");
+                return php.render("info.phtml");
             });
             get("/rocks/:name", (request, response) -> {
-                return php.render("rocks.php", "{\"name\":\"" + request.params(":name") + "\"}");
+                return php.render("rocks.phtml", "{\"name\":\"" + request.params(":name") + "\"}");
             });
         }catch(Exception e){
         	e.printStackTrace();
