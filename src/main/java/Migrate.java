@@ -1,6 +1,6 @@
 
 import com.googlecode.flyway.core.Flyway;
-import ca.on.conestogac.*;
+import io.github.rhildred.OpenShiftDataSource;
 
 public class Migrate {
 

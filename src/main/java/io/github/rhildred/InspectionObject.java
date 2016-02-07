@@ -1,4 +1,4 @@
-package ca.on.conestogac;
+package io.github.rhildred;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

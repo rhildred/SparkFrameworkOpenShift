@@ -1,8 +1,6 @@
 import java.sql.*;
 
 import com.salesucation.sparkphp.PHPRenderer;
-
-import ca.on.conestogac.*;
 import static spark.Spark.*;
 
 /**
@@ -19,7 +17,6 @@ public class App
         externalStaticFileLocation(System.getProperty("user.dir") + "/public/");
         PHPRenderer php = new PHPRenderer();
         php.setViewDir("views/");
-        final Connection connection = OpenShiftDataSource.getConnection("jdbc:mysql://localhost:3306/kanbanpomodoro?user=root");
         try{
             get("/", (request, response) -> {
                 return php.render("test.php");
@@ -29,20 +26,6 @@ public class App
             });
             get("/rocks/:name", (request, response) -> {
                 return php.render("rocks.php", "{\"name\":\"" + request.params(":name") + "\"}");
-            });
-            get("/tests", (request, response) -> {
-                //make a stmt from my SQL
-                String rc = "";
-                try{
-                    Statement oStmt = connection.createStatement();
-                    String sSQL = "SELECT * FROM tests";
-                    ResultSet oRs = oStmt.executeQuery(sSQL);
-                    rc = ResultSetValue.toJsonString(oRs);
-                    oRs.close();
-                }catch(Exception e){
-                    e.printStackTrace();
-                }
-                return rc;
             });
         }catch(Exception e){
         	e.printStackTrace();

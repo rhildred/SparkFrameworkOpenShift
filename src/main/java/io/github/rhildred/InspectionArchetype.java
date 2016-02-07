@@ -1,4 +1,4 @@
-package ca.on.conestogac;
+package io.github.rhildred;
 
 import org.json.simple.*;
 import java.sql.*;
