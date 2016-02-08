@@ -14,7 +14,7 @@ Rich Hildred - rhildred@wlu.ca - 519-594-0900
 
 ![notes](slidenotestart://)
 
-The spark framework matches RESTfull resources in a Jetty webserver with Java code. This example also uses a templating engine that allows php code to access a java model object with shared layouts.
+We will be using the Spark Micro-Framework to make a Java Webapp for the second assignment. Again the point is to acquaint you with software methods, rather than to make you a web programmer.
 
 ![/notes](slidenoteend://)
 
